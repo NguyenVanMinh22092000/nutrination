@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Customer</title>
+    <style>
+        .green{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<a href="customer/list">List Customer</a>
+<br>
+
+<form th:action="@{create}" th:object="${customer}" method="POST" >
+    <h1>Create Customer</h1>
+    <th:block th:if="${message}" >
+        <p th:text="${message}" class="green"></p>
+    </th:block>
+    <div>
+        <label>Name Customer: </label> <br>
+        <input type="text" placeholder="Enter Name Customer" th:field="*{name}">
+    </div>
+    <div>
+        <label>Address Customer:</label> <br>
+        <input type="text" placeholder="Enter Address Customer" th:field="*{address}">
+    </div>
+    <div>
+        <label>Phone Customer:</label> <br>
+        <input type="text" placeholder="Enter Phone Customer" th:field="*{phone}">
+    </div>
+    <div>
+        <label>Email Customer:</label> <br>
+        <input type="text" placeholder="Enter Email Customer" th:field="*{email}">
+    </div>
+    <div>
+        <button type="submit">Create</button>
+    </div>
+
+</form>
+</form>
+</body>
+</html>
