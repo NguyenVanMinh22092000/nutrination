@@ -48,15 +48,22 @@ public class OrderServiceImpl implements IOrderService {
        };
        orderRepository.save(order);
     }
-
+    @Override
+    public Order saveEntity(OrderDtoResponse orderDtoResponse) {
+        Order order = orderMapper.DtoToEntity(orderDtoResponse);
+        orderRepository.save(order);
+        return order;
+    }
     @Override
     public List<OrderDtoResponse> findAll() {
         return null;
     }
 
     @Override
-    public void save(OrderDtoResponse orderDtoResponse) {
-
+    public OrderDtoResponse save(OrderDtoResponse orderDtoResponse) {
+            Order order = orderMapper.DtoToEntity(orderDtoResponse);
+            orderRepository.save(order);
+        return orderDtoResponse;
     }
 
     @Override

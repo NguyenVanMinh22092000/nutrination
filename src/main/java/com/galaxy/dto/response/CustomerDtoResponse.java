@@ -1,6 +1,7 @@
 package com.galaxy.dto.response;
 
 import com.galaxy.entity.Bmi;
+import com.galaxy.entity.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ public class CustomerDtoResponse {
     private String email;
     private String phone;
     private Bmi bmi;
-    private boolean isStatus;
+    private Order order;
+    private boolean isStatus = true;
 
 }

@@ -1,6 +1,7 @@
 package com.galaxy.service.Impl;
 
 import com.galaxy.dto.response.MealDtoResponse;
+import com.galaxy.dto.response.OrderDtoResponse;
 import com.galaxy.entity.Meal;
 import com.galaxy.mapper.MealMapper;
 import com.galaxy.repository.IMealRepository;
@@ -33,8 +34,9 @@ public class MealServiceImpl implements IMealService {
     }
 
     @Override
-    public void save(MealDtoResponse mealDtoResponse) {
+    public OrderDtoResponse save(MealDtoResponse mealDtoResponse) {
 
+        return null;
     }
 
     @Override

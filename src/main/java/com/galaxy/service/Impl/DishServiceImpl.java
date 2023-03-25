@@ -1,13 +1,13 @@
 package com.galaxy.service.Impl;
 
 import com.galaxy.dto.response.DishDtoResponse;
+import com.galaxy.dto.response.OrderDtoResponse;
 import com.galaxy.entity.Dish;
 import com.galaxy.mapper.DishMapper;
 import com.galaxy.repository.IDishRepository;
 import com.galaxy.service.IDishService;
 
 import java.util.List;
-import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +46,9 @@ public class DishServiceImpl implements IDishService {
 
 
     @Override
-    public void save(DishDtoResponse dishDtoResponse) {
+    public OrderDtoResponse save(DishDtoResponse dishDtoResponse) {
 
+        return null;
     }
 
     @Override

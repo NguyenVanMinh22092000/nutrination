@@ -1,4 +1,6 @@
 package com.galaxy.service;
 
-public interface IBmiService {
+import com.galaxy.entity.Bmi;
+
+public interface IBmiService extends IGeneralService<Bmi> {
 }
