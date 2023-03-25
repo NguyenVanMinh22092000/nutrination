@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
     <meta charset="UTF-8">
     <title>Edit Customer</title>
 
@@ -8,14 +7,18 @@
 <body>
 <h1>Edit Customer</h1>
 
+<a href="/customer/list">Back To List</a> <br>
 <form th:object="${customer}" th:action="@{/customer/edit}" method="POST">
-    <!--     <th:block></th:block>-->
-    <!--     <th:text th:if="${message}">-->
-    <!--         <p th:text="${message}"></p>-->
-    <!--     </th:text>-->
+         <th:block></th:block>
+         <th:text th:if="${message}">
+             <p th:text="${message}"></p>
+         </th:text>
     <div>
         <label>Name</label>
         <input th:field="*{name}">
+    </div>
+    <div>
+        <input type="hidden" th:field="*{id}">
     </div>
 
     <div>

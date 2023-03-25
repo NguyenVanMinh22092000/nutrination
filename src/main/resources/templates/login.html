@@ -8,11 +8,13 @@
 <h1>Login</h1>
 
 <h3>Enter email and password:</h3>
-<p th:text="${message}"></p>
+<a href="/register">Register</a>
 <form name='loginForm' th:action="@{/login}" th:object="${login}" method='POST'>
+
   <th:block th:if="${message}" >
     <p th:text="${message}"></p>
   </th:block>
+
   <table>
     <tr>
       <td>Email:</td>

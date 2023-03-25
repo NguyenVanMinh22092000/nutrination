@@ -21,4 +21,9 @@ public class OrderMapper {
         BeanUtils.copyProperties(order, orderDtoResponse);
         return orderDtoResponse;
     }
+    public Order DtoToEntity(OrderDtoResponse orderDtoResponse){
+        Order order = new Order();
+        BeanUtils.copyProperties(orderDtoResponse, order);
+        return order;
+    }
 }
