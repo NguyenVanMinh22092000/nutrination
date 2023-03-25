@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,12 +26,14 @@ public class Customer {
     private String gender;
     private String password;
     private Integer age;
+    @Column(name = "is_status")
     private boolean isStatus;
     @ManyToOne(targetEntity = Bmi.class)
     @JoinColumn(name = "bmi_id", referencedColumnName = "id")
     private Bmi bmi;
 
     @OneToOne(targetEntity = Order.class)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 

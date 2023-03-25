@@ -6,9 +6,12 @@
 </head>
 <body>
 <a href="/customer/list">List Customer</a>
-<form th:action="@{/customer/delete}" th:object="${customer}" method="POST">
+<form th:action="@{/customer/delete/__${customer.id}__ }" th:object="${customer}" method="POST">
 
-  <div>
+  <div> <div>
+    <label>id</label>
+    <label th:text="${customer.id}" ></label>
+  </div>
     <label>Name Customer: </label>
     <label th:text="${customer.name}" ></label>
   </div>

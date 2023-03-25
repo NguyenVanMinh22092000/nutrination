@@ -49,9 +49,16 @@ public class CustomerController {
     }
     @GetMapping("/customer/delete/{id}")
     public ModelAndView deleteCustomer(@PathVariable(name = "id") Long id){
-        ModelAndView modelAndView = new ModelAndView("/customer/list");
+        ModelAndView modelAndView = new ModelAndView("/customer/delete");
+        modelAndView.addObject("customer",customerService.findById(id));
+        return modelAndView;
+    }
+    @PostMapping("/customer/delete/{id}")
+    public ModelAndView delete(@PathVariable(name = "id") Long id){
+        ModelAndView modelAndView = new ModelAndView("redirect:/customer/list");
         customerService.remove(id);
         return modelAndView;
     }
+
 
 }
