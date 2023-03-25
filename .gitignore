@@ -35,3 +35,7 @@ build/tmp/compileJava/compileTransaction/stash-dir/CustomerServiceImpl.class.uni
 build/
 /
 HELP.md
+settings.gradle
+gradle/wrapper/gradle-wrapper.properties
+gradlew.bat
+gradlew
