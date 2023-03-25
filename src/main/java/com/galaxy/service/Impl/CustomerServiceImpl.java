@@ -47,4 +47,10 @@ public class CustomerServiceImpl implements ICustomerService {
     public void remove(Long id) {
            customerRepository.deleteCustomerById(id);
     }
+
+    public Customer findByEmail (String email) {
+        Customer customer =customerRepository.findByEmail(email);
+        return customer;
+    }
+
 }

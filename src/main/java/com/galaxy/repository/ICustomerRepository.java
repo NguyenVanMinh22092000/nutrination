@@ -18,4 +18,6 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     @Modifying
     @Query( value = "select c from Customer c where c.isStatus = true ")
     List<Customer> findAllCustomers();
+
+    Customer findByEmail (String email);
 }

@@ -7,5 +7,6 @@ import com.galaxy.entity.Dish;
 import java.util.List;
 
 public interface ICustomerService extends IGeneralService<CustomerDtoResponse> {
+    Customer findByEmail (String email);
 
 }
