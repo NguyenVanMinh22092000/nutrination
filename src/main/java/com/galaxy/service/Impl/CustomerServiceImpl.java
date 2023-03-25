@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,11 +24,12 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<CustomerDtoResponse> findAll() {
-        List<Customer> customers = customerRepository.findAll();
+        List<Customer> customers = customerRepository.findAllCustomers();
         List<CustomerDtoResponse> customerDtoResponses;
         customerDtoResponses =  customerMapper.entitiesToDtos(customers);
         return customerDtoResponses;
     }
+
 
     @Override
     public CustomerDtoResponse findById(Long id) {
@@ -41,7 +43,8 @@ public class CustomerServiceImpl implements ICustomerService {
         customerRepository.save(customer);
     }
     @Override
+    @Transactional
     public void remove(Long id) {
-//        customerRepository.deleteCustomerById(id);
+           customerRepository.deleteCustomerById(id);
     }
 }
