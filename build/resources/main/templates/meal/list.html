@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>list meal</title>
+</head>
+<body>
+<h1>Lish Meals</h1>
+<table border="1" cellpadding="0" cellspacing="0">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Show</th>
+  </tr>
+  </thead>
+  <th:block th:each="meal : ${meals}">
+    <tbody>
+    <tr>
+      <th th:text="${meal.id}"></th>
+      <td th:text="${meal.name}"></td>
+      <td><a th:href="@{/dishes/{bmiId}/{mealId}(bmiId=${bmi}, mealId=${meal.id})}"><button>show</button></a></td>
+      <!--            <td><a th:href="@{/customer/delete/__${customer.id}__ }"><button>Delete</button></a></td>-->
+    </tr>
+    </tbody>
+  </th:block>
+</table>
+</body>
+</html>
