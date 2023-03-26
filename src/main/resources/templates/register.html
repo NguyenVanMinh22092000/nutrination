@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+</head>
+<body>
+<h1>Register</h1>
+<h3>Enter your Information</h3>
+<form th:action="@{/register}" th:object="${register}" method='POST'>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><input type='text' th:field="*{name}"></td>
+  </tr>
+
+  <tr>
+    <td>Address:</td>
+    <td><input type='text'  th:field="*{address}"></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><input type='text'  th:field="*{email}"></td>
+  </tr>
+  <tr>
+    <td>phone:</td>
+    <td><input type='text'  th:field="*{phone}"></td>
+  </tr>
+  <tr>
+    <td>gender:</td>
+    <td><input type='text'  th:field="*{gender}"></td>
+  </tr>
+  <tr>
+    <td>Password:</td>
+    <td><input type='password'  th:field="*{password}" /></td>
+  </tr>
+  <tr>
+    <td>Age:</td>
+    <td><input type='text'  th:field="*{age}" /></td>
+  </tr>
+  <tr>
+    <td>Height:</td>
+    <td><input type='text'  th:field="*{height}" /></td>
+  </tr>
+  <tr>
+    <td>Weight:</td>
+    <td><input type='text'  th:field="*{weight}" /></td>
+  </tr>
+    <td><input type='hidden' th:field="*{isStatus}" /></td>
+  <tr>
+    <td><input type="submit" value="register" /></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>
