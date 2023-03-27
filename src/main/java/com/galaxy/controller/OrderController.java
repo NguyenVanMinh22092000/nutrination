@@ -25,10 +25,12 @@ public class OrderController {
         modelAndView.addObject("orderId", orderId);
         return modelAndView;
     }
-    @GetMapping("deletedishinorder/{dishId}/{orderId}")
+    @GetMapping("deletedishinorder/{dishId}/{customerId}")
     public ModelAndView deleteDishInOrder(@PathVariable(name = "dishId") Long dishId,
-                                       @PathVariable(name = "orderId") Long orderId){
+                                       @PathVariable(name = "customerId") Long customerId){
         ModelAndView modelAndView = new ModelAndView("/order/list");
+        modelAndView.addObject("customerId", customerId);
+        Long orderId = customerService.findById(customerId).getOrder().getId();
         orderService.deleteDishInOrder(dishId, orderId);
         modelAndView.addObject("order", orderService.findById(orderId));
         return modelAndView;
