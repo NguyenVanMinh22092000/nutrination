@@ -43,7 +43,7 @@ public class CustomerController {
 
         customerService.updateCustomer(customerDtoResponse);
         ModelAndView modelAndView = new ModelAndView("/customer/edit");
-        modelAndView.addObject("message", "Edit Customer Successfully");
+        modelAndView.addObject("message", "Edit Customer Successfully !");
         return modelAndView;
     }
     @GetMapping("/create")
@@ -56,7 +56,7 @@ public class CustomerController {
     public ModelAndView CreateCustomer(@ModelAttribute("customer") CustomerDtoResponse customerDtoResponse){
         customerService.save(customerDtoResponse);
         ModelAndView modelAndView = new ModelAndView("/customer/create");
-        modelAndView.addObject("message", "Create Customer Successfully");
+        modelAndView.addObject("message", "Create Customer Successfully !");
         return modelAndView;
     }
     @GetMapping("/customer/delete/{id}")

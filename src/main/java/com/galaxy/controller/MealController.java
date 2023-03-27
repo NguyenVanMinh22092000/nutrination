@@ -15,7 +15,14 @@ public class MealController {
     private final ICustomerService customerService;
 
     @GetMapping("/meals")
-    public ModelAndView getMeals(@PathVariable() Long customerId){
+    public ModelAndView getMeals(){
+        ModelAndView modelAndView = new ModelAndView("/meal/list");
+        modelAndView.addObject("meals", mealService.findAll());
+        modelAndView.addObject("bmi", customerService.findById(1L).getBmi().getId());
+        return modelAndView;
+    }
+    @GetMapping("/meals/{customerId}")
+    public ModelAndView getMeal(@PathVariable(name = "customerId") Long customerId){
         ModelAndView modelAndView = new ModelAndView("/meal/list");
         modelAndView.addObject("meals", mealService.findAll());
         modelAndView.addObject("bmi", customerService.findById(customerId).getBmi().getId());
