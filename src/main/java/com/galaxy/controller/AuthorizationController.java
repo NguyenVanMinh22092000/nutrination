@@ -32,7 +32,6 @@ public class AuthorizationController {
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView("/login");
         modelAndView.addObject("login",new Login());
-        modelAndView.addObject("message","");
         return modelAndView;
     }
     @PostMapping("/login")
@@ -47,13 +46,13 @@ public class AuthorizationController {
             }else {
                 modelAndView = new ModelAndView("/meal/list");
                 modelAndView.addObject("meals", mealService.findAll());
-                modelAndView.addObject("bmi", customer.getBmi().getId());
+                modelAndView.addObject("customerId", customer.getId());
             }
         }else {
             modelAndView = new ModelAndView("/login");
-            modelAndView.addObject("message","Login failed");
+            modelAndView.addObject("message","Login failed !");
         }
-        return modelAndView;
+            return modelAndView;
     }
     @GetMapping("/register")
     public ModelAndView registerForm(){
@@ -63,7 +62,8 @@ public class AuthorizationController {
     }
     @PostMapping("/register")
     public ModelAndView register(@ModelAttribute (name = "register") Register register){
-        ModelAndView modelAndView = new ModelAndView("/login");
+        ModelAndView modelAndView = new ModelAndView("/register");
+        modelAndView.addObject("message", "Registered successfully !");
         Long bmiId = bmiHandler(register.getWeight(), register.getHeight());
         CustomerDtoResponse customerDtoResponse = new CustomerDtoResponse();
         BeanUtils.copyProperties(register, customerDtoResponse);
