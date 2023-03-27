@@ -2,6 +2,7 @@ package com.galaxy.mapper;
 
 import com.galaxy.dto.response.DishDtoResponse;
 import com.galaxy.entity.Dish;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,10 +21,13 @@ public class DishMapper {
 
     public DishDtoResponse entityToDto(Dish dish){
         DishDtoResponse dishDtoResponse = new DishDtoResponse();
-        dishDtoResponse.setId(dish.getId());
-        dishDtoResponse.setName(dish.getName());
-        dishDtoResponse.setCalo(dish.getCalo());
-        dishDtoResponse.setPrice(dish.getPrice());
+//        dishDtoResponse.setId(dish.getId());
+        BeanUtils.copyProperties(dish, dishDtoResponse);
         return dishDtoResponse;
+    }
+    public Dish DtoToEntity(DishDtoResponse dishDtoResponse){
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dishDtoResponse , dish);
+        return dish;
     }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<a href="/customer/list"><button>Back To List Customer</button></a>
+<form th:action="@{/dish/delete/__${dish.id}__ }" th:object="${dish}" method="post">
+  <th:block th:if="${message}">
+    <p th:text="${message}"></p>
+  </th:block>
+  <div>
+    <label>id</label>
+    <label th:text="${dish.id}" ></label>
+  </div>
+  <label>Name Dish:</label>
+  <label th:text="${dish.name}" ></label>
+  </div>
+  <div>
+    <label>Calo :</label>
+    <label th:text="${dish.calo}"></label>
+  </div>
+
+  <div>
+    <label>Price:</label>
+    <label th:text="${dish.price}"></label>
+  </div>
+  <div>
+    <button type="submit">Delete</button>
+  </div>
+
+</form>
+
+
+</body>
+</html>

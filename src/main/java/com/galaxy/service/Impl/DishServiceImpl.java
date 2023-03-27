@@ -3,12 +3,14 @@ package com.galaxy.service.Impl;
 import com.galaxy.dto.response.DishDtoResponse;
 import com.galaxy.dto.response.OrderDtoResponse;
 import com.galaxy.entity.Dish;
+import com.galaxy.entity.Order;
 import com.galaxy.mapper.DishMapper;
 import com.galaxy.repository.IDishRepository;
 import com.galaxy.service.IDishService;
 
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional
 public class DishServiceImpl implements IDishService {
     private final IDishRepository dishRepository;
     private final DishMapper dishMapper;
@@ -29,7 +32,7 @@ public class DishServiceImpl implements IDishService {
 
     @Override
     public List<DishDtoResponse> findAll() {
-        List<Dish> dishes = dishRepository.findAll();
+        List<Dish> dishes = dishRepository.findAllDishes();
         log.info("get dishes successfully ");
         List<DishDtoResponse> dishDtoResponses;
         dishDtoResponses = dishMapper.entitiesToDtos(dishes);
@@ -47,12 +50,14 @@ public class DishServiceImpl implements IDishService {
 
     @Override
     public OrderDtoResponse save(DishDtoResponse dishDtoResponse) {
-
+        Dish dish = dishMapper.DtoToEntity(dishDtoResponse);
+        dishRepository.save(dish);
         return null;
     }
 
     @Override
     public void remove(Long id) {
+        dishRepository.deleteDishById(id);
 
     }
 
