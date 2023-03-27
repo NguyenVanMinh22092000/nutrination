@@ -24,20 +24,13 @@ public class CustomerController {
         modelAndView.addObject("customers", customerService.findAll());
         return modelAndView;
     }
-//    @GetMapping("/customer/edit/{id}")
-//    public ModelAndView FormEditCustomer(@PathVariable(name = "id") Long id){
-//        ModelAndView modelAndView = new ModelAndView("/customer/edit");
-//        modelAndView.addObject("customer", customerService.findById(id));
-//        return modelAndView;
-//    }
+
     @GetMapping("/customer/edit/{id}")
     public ModelAndView showEditForm(@PathVariable Long id) {
             ModelAndView modelAndView = new ModelAndView("/customer/edit");
             modelAndView.addObject("customer", customerService.findById(id));
             return modelAndView;
     }
-
-
     @PostMapping("/customer/edit")
     public ModelAndView editCustomer(@ModelAttribute("customer") CustomerDtoResponse customerDtoResponse){
 

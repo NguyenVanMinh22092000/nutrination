@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
 </head>
 <body>
-$END$
+<h1>List Dish</h1>
+<a href="/customer/list"><button>Back To List Customer</button></a>
+<td><a th:href="@{/dish/create}"><button>Add Dish</button></a></td>
+
+<table border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Calo</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="dish : ${dishes}">
+
+        <tbody>
+        <tr>
+            <!--      <th th:text="${dish.id}"></th>-->
+            <td th:text="${dish.name}"></td>
+            <td th:text="${dish.price}"></td>
+            <td th:text="${dish.calo}"></td>
+            <td><a th:href="@{/adddishtoorder/{dishId}/{orderId}(dishId=${dish.id}, orderId=${1})}"><button>Edit</button></a></td>
+            <td><a th:href="@{/dish/delete/__${dish.id}__}"><button>Delete</button></a></td>
+
+        </tr>
+        </tbody>
+    </th:block>
+</table>
+
 </body>
 </html>

@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
     <title>Edit Customer</title>
+    <style>
+        .blue{
+            color: blue;
+        }
+    </style>
 
 </head>
 <body>
@@ -11,7 +17,7 @@
 <form th:object="${customer}" th:action="@{/customer/edit}" method="POST">
          <th:block></th:block>
          <th:text th:if="${message}">
-             <p th:text="${message}"></p>
+             <p th:text="${message}" class="blue"></p>
          </th:text>
     <div>
         <label>Name</label>

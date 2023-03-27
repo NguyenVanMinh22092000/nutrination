@@ -22,6 +22,7 @@ public class Dish {
     private String name;
     private Double calo;
     private Double price;
+    private Boolean status = true;
 
     @ManyToOne(targetEntity = Bmi.class)
     @JoinColumn(name = "bmi_id", referencedColumnName = "id")
