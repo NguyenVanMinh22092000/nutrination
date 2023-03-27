@@ -22,7 +22,7 @@
       <th th:text="${dish.id}"></th>
       <td th:text="${dish.name}"></td>
       <td th:text="${dish.calo}"></td>
-      <td><a th:href="@{/deletedishinorder/{dishId}/{orderId}(dishId=${dish.id}, orderId=${orderId})}"><button>Delete</button></a></td>
+      <td><a th:href="@{/deletedishinorder/{dishId}/{customerId}(dishId=${dish.id}, customerId=${customerId})}"><button>Delete</button></a></td>
     </tr>
     </tbody>
   </th:block>
