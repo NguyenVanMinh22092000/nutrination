@@ -17,6 +17,7 @@ public class CustomerDtoResponse {
     private String phone;
     private Bmi bmi;
     private Order order;
+    private String password;
     private boolean isStatus = true;
 
 }
