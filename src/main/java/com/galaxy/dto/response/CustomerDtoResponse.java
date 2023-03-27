@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CustomerDtoResponse {
     private Long id;
     private String name;
-    private Long age;
+    private Integer age;
     private String address;
     private String email;
     private String phone;

@@ -13,10 +13,14 @@ import java.util.List;
 @Repository
 public interface IDishRepository extends JpaRepository<Dish, Long> {
 
+//    @Query("SELECT d FROM Dish d " +
+//            "JOIN Meal m ON m.id = d.meal.id" +
+//            " JOIN Customer c ON c.bmi.id = d.bmi.id " +
+//            "WHERE c.bmi.id= :bmiId AND m.id = :mealId")
     @Query("SELECT d FROM Dish d " +
-            "JOIN Meal m ON m.id = d.meal.id" +
-            " JOIN Customer c ON c.bmi.id = d.bmi.id " +
-            "WHERE c.bmi.id= :bmiId AND m.id = :mealId")
+            "JOIN Meal m ON m.id = d.meal.id " +
+            "JOIN Customer c ON c.bmi.id = d.bmi.id " +
+            "WHERE c.bmi.id = : bmiId AND m.id = : mealId ")
 
     List<Dish> findDishes(@Param("bmiId") Long bmiId, @Param("mealId") Long mealId);
 

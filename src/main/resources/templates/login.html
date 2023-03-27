@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <style>
+    .blue{
+      color: blue;
+    }
+  </style>
 </head>
 <body>
 <h1>Login</h1>
@@ -12,7 +17,7 @@
 <form th:action="@{/login}" th:object="${login}" method='POST'>
 
   <th:block th:if="${message}" >
-    <p th:text="${message}"></p>
+    <p th:text="${message}" class="blue"></p>
   </th:block>
 
   <table>

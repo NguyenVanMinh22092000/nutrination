@@ -23,7 +23,8 @@ public class DishController {
     private final ICustomerService customerService;
 
     @GetMapping("/dishes/{customerId}/{mealId}")
-    public ModelAndView getDishByBmi(@PathVariable(name = "customerId")Long customerId, @PathVariable(name = "mealId")Long mealId){
+    public ModelAndView getDishByBmi(@PathVariable(name = "customerId")Long customerId,
+                                     @PathVariable(name = "mealId")Long mealId){
         ModelAndView modelAndView = new ModelAndView("/dish/list-bmi");
         Long bmiId = customerService.findById(customerId).getBmi().getId();
         modelAndView.addObject("dishes", dishService.getDishByBmi(bmiId, mealId));

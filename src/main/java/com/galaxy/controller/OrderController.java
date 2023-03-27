@@ -14,31 +14,27 @@ import org.springframework.web.servlet.ModelAndView;
 public class OrderController {
     private final IOrderService orderService;
     private final ICustomerService customerService;
+
     @GetMapping("adddishtoorder/{dishId}/{customerId}")
     public ModelAndView addDishToOrder(@PathVariable(name = "dishId") Long dishId,
-                                       @PathVariable(name = "customerId") Long customerId){
+                                       @PathVariable(name = "customerId") Long customerId) {
         ModelAndView modelAndView = new ModelAndView("/order/list");
         Long orderId = customerService.findById(customerId).getOrder().getId();
-        orderService.addDishToOrder(dishId,orderId);
+        orderService.addDishToOrder(dishId, orderId);
         modelAndView.addObject("customerId", customerId);
         modelAndView.addObject("order", orderService.findById(orderId));
         modelAndView.addObject("orderId", orderId);
         return modelAndView;
     }
+
     @GetMapping("deletedishinorder/{dishId}/{customerId}")
     public ModelAndView deleteDishInOrder(@PathVariable(name = "dishId") Long dishId,
-                                       @PathVariable(name = "customerId") Long customerId){
+                                          @PathVariable(name = "customerId") Long customerId) {
         ModelAndView modelAndView = new ModelAndView("/order/list");
         modelAndView.addObject("customerId", customerId);
-        Long orderId = customerService.findById(customerId).getOrder().getId();
+        Long orderId = customerService.findById(customerId).getOrder().getId()  ;
         orderService.deleteDishInOrder(dishId, orderId);
         modelAndView.addObject("order", orderService.findById(orderId));
         return modelAndView;
     }
-//    @GetMapping("adddishtoorder/{dishId}/{orderId}")
-//    public ResponseEntity<?> addDishToOrder(@PathVariable(name = "dishId") Long dishId,
-//                                       @PathVariable(name = "orderId") Long orderId){
-//        orderService.addDishToOrder(dishId, orderId);
-//        return ResponseEntity.ok().body(orderService.findById(orderId));
-//    }
 }
