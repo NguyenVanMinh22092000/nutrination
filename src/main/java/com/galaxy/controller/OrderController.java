@@ -1,5 +1,6 @@
 package com.galaxy.controller;
 
+import com.galaxy.service.ICustomerService;
 import com.galaxy.service.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,26 +13,28 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class OrderController {
     private final IOrderService orderService;
-    @GetMapping("adddishtoorder/{dishId}/{orderId}")
+    private final ICustomerService customerService;
+
+    @GetMapping("adddishtoorder/{dishId}/{customerId}")
     public ModelAndView addDishToOrder(@PathVariable(name = "dishId") Long dishId,
-                                       @PathVariable(name = "orderId") Long orderId){
+                                       @PathVariable(name = "customerId") Long customerId) {
         ModelAndView modelAndView = new ModelAndView("/order/list");
-        orderService.addDishToOrder(dishId,orderId);
+        Long orderId = customerService.findById(customerId).getOrder().getId();
+        orderService.addDishToOrder(dishId, orderId);
+        modelAndView.addObject("customerId", customerId);
         modelAndView.addObject("order", orderService.findById(orderId));
+        modelAndView.addObject("orderId", orderId);
         return modelAndView;
     }
-    @GetMapping("deletedishinorder/{dishId}/{orderId}")
+
+    @GetMapping("deletedishinorder/{dishId}/{customerId}")
     public ModelAndView deleteDishInOrder(@PathVariable(name = "dishId") Long dishId,
-                                       @PathVariable(name = "orderId") Long orderId){
+                                          @PathVariable(name = "customerId") Long customerId) {
         ModelAndView modelAndView = new ModelAndView("/order/list");
+        modelAndView.addObject("customerId", customerId);
+        Long orderId = customerService.findById(customerId).getOrder().getId()  ;
         orderService.deleteDishInOrder(dishId, orderId);
         modelAndView.addObject("order", orderService.findById(orderId));
         return modelAndView;
     }
-//    @GetMapping("adddishtoorder/{dishId}/{orderId}")
-//    public ResponseEntity<?> addDishToOrder(@PathVariable(name = "dishId") Long dishId,
-//                                       @PathVariable(name = "orderId") Long orderId){
-//        orderService.addDishToOrder(dishId, orderId);
-//        return ResponseEntity.ok().body(orderService.findById(orderId));
-//    }
 }

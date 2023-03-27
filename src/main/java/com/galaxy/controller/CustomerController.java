@@ -24,26 +24,19 @@ public class CustomerController {
         modelAndView.addObject("customers", customerService.findAll());
         return modelAndView;
     }
-//    @GetMapping("/customer/edit/{id}")
-//    public ModelAndView FormEditCustomer(@PathVariable(name = "id") Long id){
-//        ModelAndView modelAndView = new ModelAndView("/customer/edit");
-//        modelAndView.addObject("customer", customerService.findById(id));
-//        return modelAndView;
-//    }
+
     @GetMapping("/customer/edit/{id}")
     public ModelAndView showEditForm(@PathVariable Long id) {
             ModelAndView modelAndView = new ModelAndView("/customer/edit");
             modelAndView.addObject("customer", customerService.findById(id));
             return modelAndView;
     }
-
-
     @PostMapping("/customer/edit")
     public ModelAndView editCustomer(@ModelAttribute("customer") CustomerDtoResponse customerDtoResponse){
 
         customerService.updateCustomer(customerDtoResponse);
         ModelAndView modelAndView = new ModelAndView("/customer/edit");
-        modelAndView.addObject("message", "Edit Customer Successfully");
+        modelAndView.addObject("message", "Edit Customer Successfully !");
         return modelAndView;
     }
     @GetMapping("/create")
@@ -56,7 +49,7 @@ public class CustomerController {
     public ModelAndView CreateCustomer(@ModelAttribute("customer") CustomerDtoResponse customerDtoResponse){
         customerService.save(customerDtoResponse);
         ModelAndView modelAndView = new ModelAndView("/customer/create");
-        modelAndView.addObject("message", "Create Customer Successfully");
+        modelAndView.addObject("message", "Create Customer Successfully !");
         return modelAndView;
     }
     @GetMapping("/customer/delete/{id}")

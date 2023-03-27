@@ -19,7 +19,7 @@
     <tr>
       <th th:text="${meal.id}"></th>
       <td th:text="${meal.name}"></td>
-      <td><a th:href="@{/dishes/{bmiId}/{mealId}(bmiId=${bmi}, mealId=${meal.id})}"><button>show</button></a></td>
+      <td><a th:href="@{/dishes/{customerId}/{mealId}(customerId=${customerId}, mealId=${meal.id})}"><button>show</button></a></td>
       <!--            <td><a th:href="@{/customer/delete/__${customer.id}__ }"><button>Delete</button></a></td>-->
     </tr>
     </tbody>
