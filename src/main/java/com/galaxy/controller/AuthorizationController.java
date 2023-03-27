@@ -10,6 +10,7 @@ import com.galaxy.normal.Login;
 import com.galaxy.normal.Register;
 import com.galaxy.service.IBmiService;
 import com.galaxy.service.ICustomerService;
+import com.galaxy.service.IMealService;
 import com.galaxy.service.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -25,8 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class AuthorizationController {
     private final ICustomerService customerService;
     private final IBmiService bmiService;
-
     private  final IOrderService orderService;
+    private final IMealService mealService;
     @GetMapping("/home")
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView("/login");
@@ -35,16 +36,22 @@ public class AuthorizationController {
         return modelAndView;
     }
     @PostMapping("/login")
-    public ModelAndView getAll(@ModelAttribute (name = "login") Login login){
+    public ModelAndView getAll(@ModelAttribute("login") Login login){
         ModelAndView modelAndView ;
         String email = login.getEmail();
         String password = login.getPassword();
         Customer customer = customerService.findByEmail(email);
         if(customer != null && customer.getPassword().equals(password)){
-            modelAndView = new ModelAndView("/meal/list");
+            if(email.equals("nguyenvana@gmail.com")){
+                modelAndView = new ModelAndView("redirect:/customer/list");
+            }else {
+                modelAndView = new ModelAndView("/meal/list");
+                modelAndView.addObject("meals", mealService.findAll());
+                modelAndView.addObject("bmi", customer.getBmi().getId());
+            }
         }else {
-            modelAndView = new ModelAndView("redirect:/home");
-            modelAndView.addObject("message","đăng nhập thất bại");
+            modelAndView = new ModelAndView("/login");
+            modelAndView.addObject("message","Login failed");
         }
         return modelAndView;
     }
@@ -56,7 +63,7 @@ public class AuthorizationController {
     }
     @PostMapping("/register")
     public ModelAndView register(@ModelAttribute (name = "register") Register register){
-        ModelAndView modelAndView = new ModelAndView("/meal/list");
+        ModelAndView modelAndView = new ModelAndView("/login");
         Long bmiId = bmiHandler(register.getWeight(), register.getHeight());
         CustomerDtoResponse customerDtoResponse = new CustomerDtoResponse();
         BeanUtils.copyProperties(register, customerDtoResponse);
@@ -69,7 +76,7 @@ public class AuthorizationController {
         return modelAndView;
     }
     public Long bmiHandler(Double weight, Double height){
-        Double result = weight * ( height * 2);
+        Double result = weight / ( height * 2);
         if(result <= 18.5){
             return 1L;
         } else if(result <= 22.9){

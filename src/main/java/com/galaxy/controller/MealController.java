@@ -14,8 +14,8 @@ public class MealController {
     private final IMealService mealService;
     private final ICustomerService customerService;
 
-    @GetMapping("/meals/{customerId}")
-    public ModelAndView getMeals(@PathVariable(name = "customerId") Long customerId){
+    @GetMapping("/meals")
+    public ModelAndView getMeals(@PathVariable() Long customerId){
         ModelAndView modelAndView = new ModelAndView("/meal/list");
         modelAndView.addObject("meals", mealService.findAll());
         modelAndView.addObject("bmi", customerService.findById(customerId).getBmi().getId());
